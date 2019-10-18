@@ -9,28 +9,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/hi")
-public class Nana extends HttpServlet {
+@WebServlet("/add")
+public class Add extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest request
-			, HttpServletResponse response) 
-					throws ServletException, IOException {
+			, HttpServletResponse response)
+			throws ServletException,IOException{
 		
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		PrintWriter out = response.getWriter();
+		String x_ = request.getParameter("x");
+		String y_ = request.getParameter("y");
 		
-		String cnt_ = request.getParameter("cnt");
+		int x = 0, y = 0;
 		
-		int cnt = 100;
-		if(cnt_ != null && !cnt_.equals("")) {
-			cnt = Integer.parseInt(cnt_);
-		}
+		if(!x_.equals("")) x = Integer.parseInt(x_);
+		if(!y_.equals("")) y = Integer.parseInt(y_);
 		
-		for(int i=0;i<cnt;i++) {
-			out.println((i+1)+": ¾È³ç Servlet!!!<br />");
-		}
+		int sum = x + y;
+		
+		response.getWriter().printf("sum is %d\n", sum);
 	}
 }
-
